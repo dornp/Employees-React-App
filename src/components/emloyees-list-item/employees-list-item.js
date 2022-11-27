@@ -14,17 +14,14 @@ class EmployeesListItem extends Component {
     onIncrease = () => {
         this.setState(state => {
             return {
-                ...state,
                 increase: !state.increase
             }
-            
         })
     }
 
     onStar = () => {
         this.setState(state => {
             return {
-                ...state,
                 star: !state.star
             }
         })
