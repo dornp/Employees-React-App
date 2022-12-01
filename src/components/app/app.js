@@ -17,7 +17,19 @@ class App extends Component {
                 {name: "Alex M.", salary: 3000, increase: true, id: 2},
                 {name: "Carl W.", salary: 5000, increase: false, id: 3}
             ]
-        }
+        };
+        this.lastId = 4;
+    }
+
+    addNewUser = (userName, userSalary) => {
+        this.setState(state => {
+            const newArr = [...state.data];
+            newArr.push({name: userName, salary: userSalary, increase: false, id: this.lastId})
+            this.lastId++;
+            return {
+                data: newArr
+            }
+        }) 
     }
 
     deleteItem = (id) => {
@@ -47,9 +59,12 @@ class App extends Component {
                 </div>
     
                 <EmployeesList 
-                data={this.state.data}
-                onDelete={this.deleteItem}/>
-                <EmployeesAddForm/>
+                    data={this.state.data}
+                    onDelete={this.deleteItem}
+                />
+                <EmployeesAddForm
+                    addNewUser={this.addNewUser}
+                />
             </div>
         );
     }
