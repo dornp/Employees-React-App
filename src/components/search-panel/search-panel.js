@@ -11,11 +11,16 @@ class SearchPanel extends Component {
 
     onUpdateSearchLocal = (e) => {
         const term = e.target.value;
-        this.setState({term})
+        this.setState(() => {
+            return {
+                term: term
+            };
+        })
         this.props.onUpdateSearch(term)
     }
-
+    
     render () {
+        console.log(this.props)
         return (
             <input 
                 type="text" 
@@ -23,7 +28,7 @@ class SearchPanel extends Component {
                 placeholder="Найти сотрудника"
                 value={this.state.term}
                 onChange={this.onUpdateSearchLocal}
-                />
+            />
         )
     }
 }
