@@ -23,6 +23,24 @@ class App extends Component {
         this.lastId = 4;
     }
 
+    onSalaryChange = (e, id) => {
+        const inputVal = e.target.value;
+        this.setState(state => {
+            const newArr = state.data.map(item => {
+                if (id === item.id) {
+                    return {
+                        ...item,
+                        salary: inputVal.substring(0, inputVal.length - 1)
+                    };
+                }
+                return item;
+            })
+            return {
+                data: newArr
+            }
+        })
+    }
+
     addNewUser = (userName, userSalary) => {
         this.setState(state => {
             const newArr = [...state.data];
@@ -110,6 +128,7 @@ class App extends Component {
                     data={visibleData}
                     onDelete={this.deleteItem}
                     onToggleProp={this.onToggleProp}
+                    onSalaryChange={this.onSalaryChange}
                 />
                 <EmployeesAddForm
                     addNewUser={this.addNewUser}
